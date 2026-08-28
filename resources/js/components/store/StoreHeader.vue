@@ -47,12 +47,12 @@ const actionClasses =
             <Link
                 :href="home()"
                 aria-label="Начална страница"
-                class="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-plum-900"
+                class="min-w-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-plum-900"
             >
                 <img
                     src="/images/logo.png"
                     alt="Vitanea"
-                    class="h-6 w-auto translate-x-18 lg:h-7"
+                    class="h-auto w-60 max-w-full translate-x-15 lg:w-70 lg:translate-x-18"
                     width="360"
                     height="36"
                 />
@@ -62,7 +62,7 @@ const actionClasses =
                 <Link
                     :href="login()"
                     aria-label="Профил"
-                    :class="[actionClasses, 'max-lg:hidden']"
+                    :class="actionClasses"
                 >
                     <User class="size-5 shrink-0" />
                 </Link>
