@@ -1,0 +1,254 @@
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Vitanea brand palette, sampled from public/images/hero_section_design_mock.jpg.
+  Berry is the only saturated hue in the system — used once per view it reads as
+  emphasis; used freely it becomes a sale sticker.
+*/
+@theme {
+    --color-cream-50: #fbf6f0;
+    --color-cream-100: #f7ede4;
+    --color-cream-200: #efe2d4;
+    --color-cream-300: #e4d3c0;
+    --color-cream-400: #d3bda4;
+
+    --color-sage-100: #ede9dc;
+    --color-sage-200: #e0dac5;
+    --color-sage-300: #cfc7ac;
+    --color-sage-400: #b5ab8a;
+
+    --color-plum-600: #5f3d63;
+    --color-plum-700: #4a2f4d;
+    --color-plum-800: #3a233b;
+    --color-plum-900: #281d2b;
+    --color-plum-950: #1e0a25;
+
+    --color-berry-500: #d9203f;
+    --color-berry-600: #c10024;
+    --color-berry-700: #9e011f;
+
+    --color-aronia-900: #6a0410;
+    --color-aronia-950: #490206;
+}
+
+@theme inline {
+    /*
+      One rounded family in both roles. Nunito's terminals are round rather
+      than cut, which is what makes the type read as friendly instead of
+      editorial — and its Cyrillic cut is drawn, not synthesised.
+    */
+    --font-sans:
+        Nunito, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --font-display: Nunito, ui-sans-serif, system-ui, sans-serif;
+
+    /* Eyebrows and spec labels — uppercase reads as lab notation, not shouting. */
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar-background);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-border, currentColor);
+    }
+}
+
+/*
+  Organic decorative shapes. Kept as utilities rather than inline arbitrary
+  values so every section draws from the same small set and the page reads as
+  one hand.
+*/
+@utility blob-a {
+    border-radius: 63% 37% 52% 48% / 44% 58% 42% 56%;
+}
+
+@utility blob-b {
+    border-radius: 38% 62% 55% 45% / 58% 36% 64% 42%;
+}
+
+@utility blob-c {
+    border-radius: 61% 39% 46% 54% / 43% 57% 43% 57%;
+}
+
+:root {
+    --background: var(--color-cream-100);
+    --foreground: var(--color-plum-950);
+    --card: var(--color-cream-50);
+    --card-foreground: var(--color-plum-950);
+    --popover: var(--color-cream-50);
+    --popover-foreground: var(--color-plum-950);
+    --primary: var(--color-plum-900);
+    --primary-foreground: var(--color-cream-50);
+    --secondary: var(--color-sage-200);
+    --secondary-foreground: var(--color-plum-950);
+    --muted: var(--color-cream-200);
+    --muted-foreground: #6d5f68;
+    --accent: var(--color-sage-200);
+    --accent-foreground: var(--color-plum-950);
+    --destructive: var(--color-berry-600);
+    --destructive-foreground: var(--color-cream-50);
+    --border: var(--color-cream-300);
+    --input: var(--color-cream-300);
+    --ring: var(--color-plum-800);
+    --chart-1: var(--color-berry-600);
+    --chart-2: var(--color-plum-800);
+    --chart-3: var(--color-sage-400);
+    --chart-4: var(--color-aronia-900);
+    --chart-5: var(--color-plum-600);
+    --radius: 1rem;
+    --sidebar-background: var(--color-cream-50);
+    --sidebar-foreground: var(--color-plum-900);
+    --sidebar-primary: var(--color-plum-900);
+    --sidebar-primary-foreground: var(--color-cream-50);
+    --sidebar-accent: var(--color-cream-200);
+    --sidebar-accent-foreground: var(--color-plum-950);
+    --sidebar-border: var(--color-cream-300);
+    --sidebar-ring: var(--color-plum-800);
+    --sidebar: var(--color-cream-50);
+}
+
+.dark {
+    --background: var(--color-plum-950);
+    --foreground: var(--color-cream-100);
+    --card: #2a1330;
+    --card-foreground: var(--color-cream-100);
+    --popover: #2a1330;
+    --popover-foreground: var(--color-cream-100);
+    --primary: var(--color-cream-100);
+    --primary-foreground: var(--color-plum-950);
+    --secondary: var(--color-plum-800);
+    --secondary-foreground: var(--color-cream-100);
+    --muted: #33203a;
+    --muted-foreground: #b7a5b5;
+    --accent: var(--color-plum-800);
+    --accent-foreground: var(--color-cream-100);
+    --destructive: var(--color-berry-500);
+    --destructive-foreground: var(--color-cream-50);
+    --border: #3d2a42;
+    --input: #3d2a42;
+    --ring: var(--color-cream-300);
+    --chart-1: var(--color-berry-500);
+    --chart-2: var(--color-sage-300);
+    --chart-3: var(--color-cream-400);
+    --chart-4: var(--color-plum-600);
+    --chart-5: var(--color-sage-400);
+    --sidebar-background: #24102a;
+    --sidebar-foreground: var(--color-cream-100);
+    --sidebar-primary: var(--color-cream-100);
+    --sidebar-primary-foreground: var(--color-plum-950);
+    --sidebar-accent: var(--color-plum-800);
+    --sidebar-accent-foreground: var(--color-cream-100);
+    --sidebar-border: #3d2a42;
+    --sidebar-ring: var(--color-cream-300);
+    --sidebar: #24102a;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/*
+  Page transitions use the browser's View Transitions API, which Inertia v3
+  drives for any link marked `view-transition`. Wrapped in a motion query so a
+  reduced-motion visitor gets an instant swap rather than a slow cross-fade.
+*/
+@media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root) {
+        animation: 140ms cubic-bezier(0.4, 0, 1, 1) both vitanea-fade-out;
+    }
+
+    ::view-transition-new(root) {
+        animation:
+            320ms cubic-bezier(0.16, 1, 0.3, 1) 60ms both vitanea-fade-in,
+            420ms cubic-bezier(0.16, 1, 0.3, 1) both vitanea-rise;
+    }
+}
+
+@keyframes vitanea-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes vitanea-fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes vitanea-rise {
+    from {
+        transform: translateY(0.75rem);
+    }
+}
