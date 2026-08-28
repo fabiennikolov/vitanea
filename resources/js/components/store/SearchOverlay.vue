@@ -136,7 +136,7 @@ onBeforeUnmount(() => {
                 -->
                 <AroniaWatcher
                     :gaze="gaze"
-                    class="pointer-events-none absolute -top-18 right-1 -z-10 w-28 rotate-[14deg] sm:-top-20 sm:right-4 sm:w-32"
+                    class="pointer-events-none absolute -top-10 right-2 -z-10 w-16 rotate-[14deg] sm:-top-20 sm:right-4 sm:w-32"
                 />
 
                 <div

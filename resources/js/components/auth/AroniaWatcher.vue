@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import type { HTMLAttributes } from 'vue';
+import { cn } from '@/lib/utils';
 
 /**
  * An aronia berry that watches the form being filled in.
@@ -21,9 +23,15 @@ type Props = {
     covered?: boolean;
     /** Password is displayed as plain text — one eye comes out to peek. */
     peeking?: boolean;
+    class?: HTMLAttributes['class'];
 };
 
-const { gaze = 0.5, covered = false, peeking = false } = defineProps<Props>();
+const {
+    gaze = 0.5,
+    covered = false,
+    peeking = false,
+    class: className,
+} = defineProps<Props>();
 
 const blinking = ref(false);
 
@@ -71,7 +79,7 @@ const rightLeaf = computed(() =>
 <template>
     <svg
         viewBox="0 0 140 132"
-        class="h-auto w-full"
+        :class="cn('h-auto w-full', className)"
         role="img"
         aria-label="Илюстрация: зрънце арония"
     >
